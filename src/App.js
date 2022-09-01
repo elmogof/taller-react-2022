@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+// import HomePageHeader from "./components/HomePageHeader";
+// import GenericHeader from "./components/GenericHeader";
+import useContador from "./hooks/useContador";
+
+const App = () => {
+
+  const [number, aumentar, reiniciar, reducir] = useContador();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <h1>{number}</h1>
+
+      <button onClick={aumentar}>
+        <span>Aumentar</span>
+      </button>
+      <button onClick={reiniciar}>
+        <span>Reiniciar</span>
+      </button>
+      <button onClick={reducir}>
+        <span>Reducir</span>
+      </button>
     </div>
   );
 }
