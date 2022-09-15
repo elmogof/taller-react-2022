@@ -1,23 +1,31 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { incrementar, reducir, reiniciar, aumentarPorCantidad } from '../redux/slices/counterSlice';
 
 const useContador = () => {
-    const [number, setNumber] = useState(0);
+    const number = useSelector(state => state.counter.number);
+    const dispatch = useDispatch();
 
-    function aumentar() {
-        setNumber(number + 1);
+    function incrementarValor() {
+        dispatch(incrementar());
         console.log("El valor de number es: ", number);
     }
 
-    function reiniciar() {
-        setNumber(0);
+    function reiniciarValor() {
+        dispatch(reiniciar());
         console.log("El valor de number es: ", number);
     }
 
-    function reducir() {
-        setNumber(number - 1);
+    function reducirValor() {
+        dispatch(reducir());
         console.log("El valor de number es: ", number);
     }
-    return [number, aumentar, reiniciar, reducir];
+
+    function aumentarPorCantidadValor(cantidad) {
+        dispatch(aumentarPorCantidad(cantidad));
+        console.log("El valor de number es: ", number);
+    }
+
+    return [number, incrementarValor, reiniciarValor, reducirValor, aumentarPorCantidadValor];
 }
 
 export default useContador

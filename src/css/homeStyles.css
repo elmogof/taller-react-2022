@@ -12,12 +12,17 @@
 }
 
 button {
-    background-color: lightblue;
-    color: black;
     margin: 5px;
     padding: 10px;
     width: 100px;
     height: 48px;
     border-radius: 5px;
     border: 2px solid black;
+}
+
+input {
+    margin: 5px 0;
+    padding: 0 10px;
+    width: 70px;
+    text-align: center;
 }
