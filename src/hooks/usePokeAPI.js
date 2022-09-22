@@ -1,24 +1,22 @@
-import { useState, useEffect } from "react";
-import { getPokemon } from "../api/pokemonAPI";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPokemon } from "../redux/slices/pokemonSlice";
 
 export const usePokeAPI = () => {
-    const [pokemon, setPokemon] = useState([]);
+    const dispatch = useDispatch();
+    const { pokemonList, status } = useSelector(state => state.pokemon);
+
+    const fetchPokemonAsync = () => {
+        setTimeout(() => {
+            dispatch(fetchPokemon());
+        }, 4000);
+    }
 
     useEffect(() => {
-        async function getPokemonData() {
-            setTimeout(async () => {
-                return getPokemon().then(
-                    (response) => {
-                        console.log(response);
-                        setPokemon(response);
-                    }
-                )
-            }, 4000);
-        }
-        getPokemonData();
+        fetchPokemonAsync();
     }, [])
 
-    return [pokemon];
+    return [pokemonList, status];
 }
 
 export default usePokeAPI;
